@@ -186,6 +186,23 @@ static void load_rgba32(const char *filename, SDL_Renderer *renderer, MyImage *o
     SDL_GetTextureSize(output_image_two->texture, &output_image_two->rect.w, &output_image_two->rect.h);
 }
 
+static int verify_gray_scale(SDL_Renderer *renderer, MyImage *image)
+{
+    if (!renderer || !image || !image->surface) return -1;
+    SDL_LockSurface(image->surface);
+    const SDL_PixelFormatDetails *format = SDL_GetPixelFormatDetails(image->surface->format);
+    const size_t pixelCount = image->surface->w * image->surface->h;
+    Uint32 *pixels = (Uint32 *)image->surface->pixels;
+    Uint8 r, g, b, a;
+    for (size_t i = 0; i < pixelCount; ++i)
+    {
+        SDL_GetRGBA(pixels[i], format, NULL, &r, &g, &b, &a);
+        if (!(r == g && b == g)) return 0;
+    }
+    return 1;
+}
+
+
 static void to_gray_scale(SDL_Renderer *renderer, MyImage *image)
 {
     if (!renderer || !image || !image->surface) return;
@@ -592,7 +609,7 @@ int main(int argc, char *argv[])
     load_rgba32(argv[1], g_window.renderer, &g_image, &g_image_two);
 
     // Converte a imagem principal para tons de cinza
-    to_gray_scale(g_window.renderer, &g_image);
+    if(verify_gray_scale(g_window.renderer, &g_image) == 0) to_gray_scale(g_window.renderer, &g_image);
     
     // CRÍTICO: Copia a versão em tons de cinza para o backup
     // para que a restauração funcione corretamente.
