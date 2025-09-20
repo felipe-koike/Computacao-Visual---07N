@@ -1,4 +1,8 @@
-
+Nome - RA
+Bruno Viana Tripoli Barbosa   - 10409547
+Felipe Gyotoku Koike          - 10409640
+Jonatas de Brito Silva        - 10409637
+Vitor Machado                 - 10409358
 
 
 Olá professor.
@@ -28,12 +32,18 @@ Nosso projeto se encontra dentro da pasta 07N\ComputacaoVisual\CODES\1.PROJETO\
   Dentro da render() também temos as funções calculate_average_intensity(), calculate_standard_deviation(), classify_intensity_string() e classify_deviation_string() que realizam os cálculos da média da intensidade, do desvio padrão,
   classicam a intensidade e classicam o desvio padrão, respectivamente.
 
-5. Equalização do histograma
+# 5. Equalização do histograma
   Para a equalização das imagens criamos a função calculate_equilize_vector() na linha 543 que realiza o cálculo da equalização e salva os novos valores de intensidade no vetor histogram_equalized[].
   Ao apertar o botão, o programa verifica se a imagem está equalizada ou não. Se ela não estiver, o programa chama a função apply_equalization() que utiliza um ciclo for que verifica a intensidade
   de cada pixel e subtsitui pelo seu valor de intensidade pelo valor no índice correspondente do vetor histogram_equalized[].
   Se estiver equalizado, o programa chama a função restore_original_image() que transforma a imagem equalizada "g_image" pelo backup "g_image_two".
   Dentro da função loop() na linha 414, o programa realiza a verificação que chama a função render() para a atualização dos valores das janelas (imagem, histograma, botão, textos e cor do botão).
 
-6. Salvar imagem
-  Para salvar a imagem criamos a função save_image_as_png() na linha 573, quando o usuário aperta a tecla S utiliza a função IMG_SavePNG() para realizar o salvamento. Sendo que a verificação se o botão S foi apertado está dentro da função loop(). 
+# 6. Salvar imagem
+  Para salvar a imagem criamos a função save_image_as_png() na linha 573, quando o usuário aperta a tecla S utiliza a função IMG_SavePNG() para realizar o salvamento. Sendo que a verificação se o botão S foi apertado está dentro da função loop().
+
+
+-------------------------------------------------------------
+OBS: Professor Kishimoto, todos os integrantes do grupo participaram, tivemos reuniões no Discord nos dias 14/09/2025, 18/09/2025 e 19/09/2025 para discutir e realizar o projeto juntos. 
+Acabamos subindo uma única versão e uma atualização sem se atentar ao ponto 7. Repositório e documentação da lista dos critérios de avaliação. Agradeceriamos se essa falta de atenção não impactasse na nossa nota. 
+Podemos mostrar nossas conversas do WhatsApp e Discord para evidênciar toda nossa colaboração e versões do projeto.
