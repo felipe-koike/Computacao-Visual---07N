@@ -564,9 +564,9 @@ void calculate_equilize_vector()
 
 const char *classify_intensity_string(int intensity)
 {
-    if (intensity < 85) return "Intensidade baixa";
-    if (intensity <= 170) return "Intensidade media";
-    return "Intensidade alta";
+    if (intensity < 85) return "Imagem escura";
+    if (intensity <= 170) return "Imagem media";
+    return "Imagem clara";
 }
 
 const char *classify_deviation_string(float deviation)
