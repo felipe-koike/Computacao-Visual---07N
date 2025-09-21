@@ -184,6 +184,7 @@ static void load_rgba32(const char *filename, SDL_Renderer *renderer, MyImage *o
     output_image_two->texture = SDL_CreateTextureFromSurface(renderer, output_image_two->surface);
     if (!output_image->texture || !output_image_two->texture) { SDL_Log("Erro ao criar textura: %s", SDL_GetError()); return; }
 
+
     SDL_GetTextureSize(output_image->texture, &output_image->rect.w, &output_image->rect.h);
     SDL_GetTextureSize(output_image_two->texture, &output_image_two->rect.w, &output_image_two->rect.h);
 }
@@ -199,8 +200,13 @@ static int verify_gray_scale(SDL_Renderer *renderer, MyImage *image)
     for (size_t i = 0; i < pixelCount; ++i)
     {
         SDL_GetRGBA(pixels[i], format, NULL, &r, &g, &b, &a);
-        if (!(r == g && b == g)) return 0;
+        if (!(r == g && b == g))
+        {
+            SDL_Log("Imagem nao esta em escala de cinza.");
+            return 0; // Não está em escala de cinza
+        };
     }
+    SDL_Log("Imagem ja esta em escala de cinza.");
     return 1;
 }
 
@@ -208,6 +214,7 @@ static int verify_gray_scale(SDL_Renderer *renderer, MyImage *image)
 static void to_gray_scale(SDL_Renderer *renderer, MyImage *image)
 {
     if (!renderer || !image || !image->surface) return;
+    SDL_Log("Convertendo imagem para escala de cinza...");
     SDL_LockSurface(image->surface);
     const SDL_PixelFormatDetails *format = SDL_GetPixelFormatDetails(image->surface->format);
     const size_t pixelCount = image->surface->w * image->surface->h;
@@ -223,6 +230,7 @@ static void to_gray_scale(SDL_Renderer *renderer, MyImage *image)
     SDL_UnlockSurface(image->surface);
     if (image->texture) SDL_DestroyTexture(image->texture);
     image->texture = SDL_CreateTextureFromSurface(renderer, image->surface);
+    SDL_Log("Conversao para escala de cinza concluida.");
 }
 
 void apply_equalization(SDL_Renderer *renderer, MyImage *image)
@@ -443,6 +451,7 @@ static void loop(void)
                     break;
                 case SDL_EVENT_WINDOW_CLOSE_REQUESTED:
                 {
+                    SDL_Log("Fechando janela...");
                     SDL_WindowID windowID = event.window.windowID;
                     if (windowID == SDL_GetWindowID(g_window.window)) isRunning = false;
                     else if (windowID == SDL_GetWindowID(h_window.window)) SDL_HideWindow(h_window.window);
