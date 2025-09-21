@@ -1,9 +1,11 @@
 // Copyright (c) 2025 Andre Kishimoto - https://kishimoto.com.br/
 // SPDX-License-Identifier: Apache-2.0
 
-//------------------------------------------------------------------------------
-// Exemplo: 04-to_gray_scale (com equalização de histograma)
-//------------------------------------------------------------------------------
+
+// Bruno Viana Tripoli Barbosa - 10409547
+// Felipe Gyotoku Koike - 10409640
+// Jonatas de Brito Silva - 10409637
+// Vitor Machado - 10409358
 
 //------------------------------------------------------------------------------
 // Includes
