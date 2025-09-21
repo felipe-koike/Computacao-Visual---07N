@@ -47,6 +47,6 @@ Nosso projeto se encontra dentro da pasta 07N\ComputacaoVisual\CODES\1.PROJETO\
 
 
 -------------------------------------------------------------
-OBS: Professor Kishimoto, todos os integrantes do grupo participaram, tivemos reuniões no Discord nos dias 14/09/2025, 18/09/2025 e 19/09/2025 para discutir e realizar o projeto juntos.<br>
-Acabamos subindo uma única versão e uma atualização sem se atentar ao ponto 7. Repositório e documentação da lista dos critérios de avaliação. Agradeceriamos se essa falta de atenção não impactasse na nossa nota.<br> 
+OBS: Professor Kishimoto, todos os integrantes do grupo participaram, tivemos reuniões no Discord nos dias 14/09/2025, 18/09/2025, 19/09/2025 e 21/09/2025 para discutir e realizar o projeto juntos.<br>
+Acabamos subindo uma único commit com o código praticamente feito, seguido de algumas atualizações, sem se atentar ao ponto "7. Repositório e documentação" da lista dos critérios de avaliação. Pedimos perdão pelo descuido e agradeceriamos se essa falta de atenção não impactasse na nossa nota.<br> 
 Podemos mostrar nossas conversas do WhatsApp e Discord para evidênciar toda nossa colaboração e versões do projeto.
