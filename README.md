@@ -22,9 +22,7 @@ Olá professor.
 ### Notas : 
 -   Não entendemos muito bem o conceito de janela filha, implementamos uma verificação para que, ao fechar a janela principal (imagem) a janela secundária (histograma) também seja fechada, esperamos que seja isso.
 
--   Implementamos a saída também ao pressionar a tecla ESC do teclado, pois em imagens extremamente grandes (que ultrapassam a resolução do próprio monitor) fica difícil achar o ícone de sair (❌).
-
--   Implementamos um redimensionamento (se é que se pode dizer assim) da imagem. O que fazemos é mudar o SDL_FRect da imagem, assim mesmo que os cálculos sejam feitos na imagem original, a exibida não passará da resolução do monitor.
+-   Implementamos a saída também ao pressionar a tecla ESC do teclado, pois em imagens extremamente grandes (que ultrapassam a resolução do próprio monitor) fica difícil achar o ícone de sair com a imagem centralizada (❌).
 
 -   Tivemos dificuldades em deixar o código performático, sabemos que não é a melhor implementação, pois consome um pouco mais de memória do que deveria, devido ao switch de uma imagem equalizada para a imagem original em tons de cinza.
 
@@ -74,6 +72,21 @@ Olá professor.
   pixel da imagem e incrementar o valor da sua respectiva posição do vetor. Após isso chamamos a função render() na linha 357 que renderiza a imagem na janela principal, o histograma, as informações juntamente com o botão na janela secundária.<br>
   Dentro da render() também temos as funções ```calculate_average_intensity()```, ```calculate_standard_deviation()```, ```classify_intensity_string()``` e ```classify_deviation_string()``` que realizam os cálculos da média da intensidade, do desvio padrão,
   classicam a intensidade e classicam o desvio padrão, respectivamente.
+
+```c
+const char *classify_deviation_string(float deviation)
+{
+    if (deviation < 42.5f) return "Baixo contraste";
+    if (deviation <= 85.0f) return "Medio contraste";
+    return "Alto contraste";
+}
+```
+
+Os valores setados tem como base o maior desvio padrão possível, que é o de 127,5, tendo em vista que metade dos pixel tem a menor intensidade possível e a outra metade tem a maior intensidade possível.
+
+Dividimos isso por três e classificamos assim.
+
+
 
 ###  5. Equalização do histograma
   Para a equalização das imagens criamos a função ```calculate_equilize_vector()``` na linha 543 que realiza o cálculo da equalização e salva os novos valores de intensidade no vetor ```histogram_equalized[]```.<br>
