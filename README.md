@@ -75,6 +75,21 @@ Olá professor.
   Dentro da render() também temos as funções ```calculate_average_intensity()```, ```calculate_standard_deviation()```, ```classify_intensity_string()``` e ```classify_deviation_string()``` que realizam os cálculos da média da intensidade, do desvio padrão,
   classicam a intensidade e classicam o desvio padrão, respectivamente.
 
+```c
+const char *classify_deviation_string(float deviation)
+{
+    if (deviation < 42.5f) return "Baixo contraste";
+    if (deviation <= 85.0f) return "Medio contraste";
+    return "Alto contraste";
+}
+```
+
+Os valores setados tem como base o maior desvio padrão possível, que é o de 127,5, tendo em vista que metade dos pixel tem a menor intensidade possível e a outra metade tem a maior intensidade possível.
+
+Dividimos isso por três e classificamos assim.
+
+
+
 ###  5. Equalização do histograma
   Para a equalização das imagens criamos a função ```calculate_equilize_vector()``` na linha 543 que realiza o cálculo da equalização e salva os novos valores de intensidade no vetor ```histogram_equalized[]```.<br>
   Ao apertar o botão, o programa verifica se a imagem está equalizada ou não. Se ela não estiver, o programa chama a função ```apply_equalization()``` que utiliza um ciclo for que verifica a intensidade
