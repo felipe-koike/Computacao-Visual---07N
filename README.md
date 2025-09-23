@@ -1,14 +1,34 @@
 # Projeto 01 - Computação Visual
 
-### Nome - RA
+<br>
 
-Bruno Viana Tripoli Barbosa   - 10409547<br>
-Felipe Gyotoku Koike          - 10409640<br>
-Jonatas de Brito Silva        - 10409637<br> 
-Vitor Machado                 - 10409358<br> 
+| Nome      | RA |
+| ----------- | ----------- |
+| Bruno Viana Tripoli Barbosa      | 10409547       |
+| Felipe Gyotoku Koike   | 10409640        |
+| Jonatas de Brito Silva   | 10403674        |
+| Vitor Machado   | 10409358        |
 
+
+<br>
+<br>
 
 Olá professor.
+<br>
+<br>
+
+
+
+### Notas : 
+-   Não entendemos muito bem o conceito de janela filha, implementamos uma verificação para que, ao fechar a janela principal (imagem) a janela secundária (histograma) também seja fechada, esperamos que seja isso.
+
+-   Implementamos a saída também ao pressionar a tecla ESC do teclado, pois em imagens extremamente grandes (que ultrapassam a resolução do próprio monitor) fica difícil achar o ícone de sair (❌).
+
+-   Implementamos um redimensionamento (se é que se pode dizer assim) da imagem. O que fazemos é mudar o SDL_FRect da imagem, assim mesmo que os cálculos sejam feitos na imagem original, a exibida não passará da resolução do monitor.
+
+-   Tivemos dificuldades em deixar o código performático, sabemos que não é a melhor implementação, pois consome um pouco mais de memória do que deveria, devido ao switch de uma imagem equalizada para a imagem original em tons de cinza.
+
+
 
 
 
@@ -21,6 +41,9 @@ Olá professor.
   ```git
   git clone https://github.com/felipe-koike/Computacao-Visual---07N.git
   ```
+
+
+
 
 
 ###  1. Carregamento de imagem
