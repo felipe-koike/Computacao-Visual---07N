@@ -451,10 +451,10 @@ static void loop(void)
                     break;
                 case SDL_EVENT_WINDOW_CLOSE_REQUESTED:
                 {
-                    SDL_Log("Fechando janela...");
+                    
                     SDL_WindowID windowID = event.window.windowID;
-                    if (windowID == SDL_GetWindowID(g_window.window)) isRunning = false;
-                    else if (windowID == SDL_GetWindowID(h_window.window)) SDL_HideWindow(h_window.window);
+                    if (windowID == SDL_GetWindowID(g_window.window)){ isRunning = false; SDL_Log("Fechando janela(s)...");}
+                    else if (windowID == SDL_GetWindowID(h_window.window)) {SDL_HideWindow(h_window.window); SDL_Log("Fechando janela do histograma...");};
                     break;
                 }
             }
@@ -571,8 +571,8 @@ const char *classify_intensity_string(int intensity)
 
 const char *classify_deviation_string(float deviation)
 {
-    if (deviation < 52.0f) return "Baixo contraste";
-    if (deviation <= 104.0f) return "Medio contraste";
+    if (deviation < 42.5f) return "Baixo contraste";
+    if (deviation <= 85.0f) return "Medio contraste";
     return "Alto contraste";
 }
 
@@ -622,8 +622,6 @@ int main(int argc, char *argv[])
     // Converte a imagem principal para tons de cinza
     if(verify_gray_scale(g_window.renderer, &g_image) == 0) to_gray_scale(g_window.renderer, &g_image);
     
-    // CRÍTICO: Copia a versão em tons de cinza para o backup
-    // para que a restauração funcione corretamente.
     SDL_memcpy(g_image_two.surface->pixels, g_image.surface->pixels, g_image.surface->h * g_image.surface->pitch);
     
     // Calcula o histograma inicial (da imagem em tons de cinza)
@@ -635,49 +633,40 @@ int main(int argc, char *argv[])
     h_button.active = (SDL_Color){0, 0, 100, 255};
     h_button.hovered = false;
     h_button.pressed = false;
-   
-    
-    if ((int)g_image.rect.w > 1920 || (int)g_image.rect.h > 1080)
-    {
-        SDL_Log("Atenção: A imagem é muito grande (%dx%d). Reduzindo para 1920x1080.", (int)g_image.rect.w, (int)g_image.rect.h);
-        float aspect_ratio = g_image.rect.w / g_image.rect.h;
-        if (aspect_ratio > 1.0f) {
-            g_image.rect.w = 1920.0f;
-            g_image.rect.h = 1920.0f / aspect_ratio;
-        } else {
-            g_image.rect.h = 1080.0f;
-            g_image.rect.w = 1080.0f * aspect_ratio;
-        }
-    }
+
     
     int imageWidth = (int)g_image.rect.w;
     int imageHeight = (int)g_image.rect.h;
+
+
     if (imageWidth > 0 && imageHeight > 0)
     {
-        // Posiciona a janela da imagem no centro
-        SDL_SetWindowSize(g_window.window, imageWidth, imageHeight);
-        SDL_SetWindowPosition(g_window.window, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
-        
-
-        // 1. Obter os limites do display principal
         SDL_Rect display_bounds;
         SDL_DisplayID main_display_id = SDL_GetPrimaryDisplay();
+
         if (SDL_GetDisplayBounds(main_display_id, &display_bounds) != 1)
         {
-            SDL_Log("Nao foi possivel obter os limites do display: %s", SDL_GetError());
-            // Define um fallback (resolução comum) caso a função falhe
-            display_bounds = (SDL_Rect){ .x = 0, .y = 0, .w = 1920, .h = 1080 };
+            SDL_Log("Nao foi possivel obter os limites do display: %s\nSupondo que o display tem 1920x1080...", SDL_GetError());
+            display_bounds = (SDL_Rect){ .x = 0, .y = 0, .w = 1920, .h = 1080 }; // Seta um valor padrão de 1920x1080
         }
-        display_bounds.y += 40; 
 
-        // 2. Obter o tamanho da janela do histograma
+        if ((int)g_image.rect.w > display_bounds.w || (int)g_image.rect.h > display_bounds.h)
+            SDL_Log("Atenção: A imagem é muito grande (%dx%d). Poderá ficar desproporcional ao tamanho do display principal.", (int)g_image.rect.w, (int)g_image.rect.h);
+        
+        int border_top, border_left, border_bottom, border_right;
+        SDL_GetWindowBordersSize(g_window.window, &border_top, &border_left, &border_bottom, &border_right);
+
+
+        SDL_SetWindowSize(g_window.window, imageWidth, imageHeight);
+        SDL_SetWindowPosition(g_window.window, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
+        display_bounds.y += 40;
+
         int h_win_w, h_win_h;
         SDL_GetWindowSize(h_window.window, &h_win_w, &h_win_h);
 
-        // 3. Calcular a posição no canto superior direito do display
         int margin = 20; // Uma pequena margem das bordas da tela
         int h_win_x = display_bounds.x + display_bounds.w - h_win_w - margin;
-        int h_win_y = display_bounds.y + margin;
+        int h_win_y = SDL_WINDOWPOS_CENTERED;
 
         // 4. Define a posição final e fixa da janela do histograma
         SDL_SetWindowPosition(h_window.window, h_win_x, h_win_y);
