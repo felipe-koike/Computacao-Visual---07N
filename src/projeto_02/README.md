@@ -148,34 +148,11 @@ Este script usa os arquivos gerados pelo `train_model.py`.
 
 ### Passo 2: Baixar o Dataset
 
-1.  Na sua pasta (`analyser`), crie um arquivo chamado `download_data.py`.
-2.  Cole o seguinte código nele:
-    ```python
-    import kagglehub
-    import os
-    import zipfile
-    
-    dataset_name = "luischuquimarca/banana-ripeness"
-    extract_path = "dataset" # Irá criar a pasta 'dataset'
-    
-    print(f"Baixando o dataset '{dataset_name}'...")
-    path = kagglehub.dataset_download(dataset_name)
-    print(f"Dataset baixado para: {path}")
-    
-    if not os.path.exists(extract_path):
-        os.makedirs(extract_path)
-    
-    print(f"Extraindo arquivos para a pasta '{extract_path}'...")
-    with zipfile.ZipFile(path, 'r') as zip_ref:
-        zip_ref.extractall(extract_path)
-    
-    print("Download e extração concluídos.")
-    ```
-3.  Execute o script **uma vez** (com o `(venv)` ativo):
-    ```bash
-    python download_data.py
-    ```
-    Ao final, você terá uma pasta `dataset` pronta para o treinamento.
+1.  Na sua pasta (`analyser`), crie uma pasta chamada dataset.
+2.  Baixe o dataset pela Kaggle neste link: https://www.kaggle.com/datasets/luischuquimarca/banana-ripeness?resource=download
+<br>
+3.  Coloque dentro da pasta dataset para que fique nessa estrutura:<br><br><img width="132" height="112" alt="image" src="https://github.com/user-attachments/assets/75567624-9fe4-4670-b9c4-11ca3df59a0c" /><br>
+<br>Ao final, você terá uma pasta `dataset` pronta para o treinamento.
 
 ### Passo 3: Treinar o Modelo
 
