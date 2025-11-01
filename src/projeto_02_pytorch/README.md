@@ -11,6 +11,15 @@
 
 <br>
 
+
+* O Windows pode reconhecer o executável como um arquivo malicioso, mas basta clicar em executar mesmo assim e tá tudo certo. Vai ser executado.<br>
+
+* O programa não acerta 100% das vezes, alguns equívocos acontecem quando uma imagem tem muito verde por exemplo, já que a imagem é analisada como um todo, o modelo prediz uma banana verde o que pode não ser uma verdade.<br>
+* O programa abrirá uma tela de terminal antes de ser executado.<br>
+* O programa demora um pouco para ser executado devido às biblitecas utilizadas como o Pytorch.<br>
+* Colocamos uma limitação de 20MB para o tamanho da imagem adicionada.<br>
+
+
 # Analisador de Maturação de Bananas
 
 Este projeto é uma aplicação de **Visão Computacional** que utiliza uma **Rede Neural Convolucional (CNN)** treinada com PyTorch para classificar o estágio de maturação de bananas. A aplicação possui uma interface gráfica (GUI) onde o usuário pode carregar uma imagem e receber a classificação do modelo em tempo real.
@@ -27,11 +36,14 @@ Este projeto é uma aplicação de **Visão Computacional** que utiliza uma **Re
 * **Validação de Arquivo:** Verifica o tamanho do arquivo (limite de 20MB) para evitar sobrecarga.
 * **Modelo de Deep Learning:** Utiliza uma arquitetura ResNet18 treinada especificamente para esta tarefa.
 
+LINK DE VÍDEO TESTE SEM AUDIO
+https://drive.google.com/file/d/18caospEZf7bDh_pC_T_jo-B8VEgjV8I-/view?usp=sharing
+
 ## 🧠 Como Funciona: IA e Visão Computacional
 
 Este projeto é um exemplo clássico de como a Inteligência Artificial e a Visão Computacional trabalham juntas.
 
-1.  **Visão Computacional (CV):** É o campo que permite ao computador "enxergar" e interpretar imagens digitais. Neste projeto, a CV é usada para:
+1.  **Visão Computacional (VC):** É o campo que permite ao computador "enxergar" e interpretar imagens digitais. Neste projeto, a VC é usada para:
     * Ler o arquivo de imagem (JPG, PNG, etc.).
     * Pré-processar a imagem: redimensioná-la para o tamanho que o modelo espera (224x224 pixels) e convertê-la em um formato numérico (Tensor) que a IA possa entender.
 
@@ -50,9 +62,9 @@ Este projeto é um exemplo clássico de como a Inteligência Artificial e a Vis�
 
 ## 📄 Análise dos Arquivos de Código
 
-O projeto é dividido em duas partes principais: o treinamento do modelo (o "cérebro") e a aplicação gráfica (o "rosto").
+O projeto é dividido em duas partes principais: o treinamento do modelo e a aplicação gráfica.
 
-### 1. `train_model.ipynb` (O Cérebro - Treinamento)
+### 1. `train_model.ipynb` (Treinamento)
 
 Este Jupyter Notebook é responsável por treinar o modelo de IA.
 
@@ -73,7 +85,7 @@ Este Jupyter Notebook é responsável por treinar o modelo de IA.
     * Ele gera gráficos de perda (Loss) e acurácia (Accuracy) e uma **Matriz de Confusão** (que mostra quais classes o modelo mais confunde).
     * Finalmente, ele salva os pesos aprendidos (o `state_dict`) no arquivo `resnet18_model.pth`.
 
-### 2. `app.py` (O Rosto - Aplicação Gráfica)
+### 2. `app.py` (Aplicação Gráfica)
 
 Este script Python é a aplicação final que o usuário executa.
 
