@@ -1,10 +1,15 @@
-# Projeto 01 - Computação Visual <br>
-## Nome - RA
-### Bruno Viana Tripoli Barbosa   - 10409547<br>
-### Felipe Gyotoku Koike          - 10409640<br>
-### Jonatas de Brito Silva        - 10403674<br> 
-### Vitor Machado                 - 10409358<br>
+# Projeto 02 - Computação Visual
 
+<br>
+
+| Nome      | RA |
+| ----------- | ----------- |
+| Bruno Viana Tripoli Barbosa      | 10409547       |
+| Felipe Gyotoku Koike   | 10409640        |
+| Jonatas de Brito Silva   | 10403674        |
+| Vitor Machado   | 10409358        |
+
+<br>
 
 # Analisador de Maturação de Bananas
 
