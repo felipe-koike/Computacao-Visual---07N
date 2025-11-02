@@ -143,6 +143,7 @@ Para que o projeto funcione, a estrutura de pastas deve ser:<br>
     pip install pillow
     pip install numpy
     pip install scikit-learn
+    pip install pyinstaller
     ```
 
 ### Passo 2: Baixar o Dataset
