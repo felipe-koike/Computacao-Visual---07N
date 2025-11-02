@@ -160,7 +160,7 @@ Para que o projeto funcione, a estrutura de pastas deve ser:<br>
 
 ### Passo 3: Treinar o Modelo
 
-1.  Certifique-se de que os arquivos `train_model.py` e `app.py` disponibilizados neste repositório estão na sua pasta `analyser`.
+1.  Certifique-se de que os arquivos `train_model.ipynb` e `app.py` disponibilizados neste repositório estão na sua pasta `analyser`.
 2.  Execute o script de treinamento:
     ```bash
     python train_model.ipynb
