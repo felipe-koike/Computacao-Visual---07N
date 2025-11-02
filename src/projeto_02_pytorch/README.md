@@ -113,7 +113,7 @@ Este script Python é a aplicação final que o usuário executa.
     * `open_image_file`: É chamada quando o botão "Carregar Imagem" é clicado. Ela abre a caixa de diálogo, valida o tamanho do arquivo, exibe um thumbnail (miniatura) da imagem na tela e chama `predict_image`.
     * `show_message`: Exibe o resultado da predição (ou mensagens de erro) no label `result_label`, usando cores diferentes para sucesso, aviso ou erro.
 
-## 🚀 Estrutura do Projeto e Dependências
+## 🚀 Estrutura do Projeto
 
 Para que o projeto funcione, a estrutura de pastas deve ser:<br>
 
