@@ -83,7 +83,7 @@ Este Jupyter Notebook é responsável por treinar o modelo de IA.
 * **Passo 3: Avaliação e Exportação**
     * Após o treinamento, o modelo é avaliado no conjunto de `test_loader` para verificar sua acurácia em dados nunca vistos.
     * Ele gera gráficos de perda (Loss) e acurácia (Accuracy) e uma **Matriz de Confusão** (que mostra quais classes o modelo mais confunde).
-    * Finalmente, ele salva os pesos aprendidos (o `state_dict`) no arquivo `resnet18_model.pth`.
+    * Finalmente, ele salva os pesos aprendidos (o `state_dict`) no arquivo `banana_classifier_model.pth`.
 
 ### 2. `app.py` (Aplicação Gráfica)
 
@@ -96,7 +96,6 @@ Este script Python é a aplicação final que o usuário executa.
     * O script **recria** a arquitetura ResNet18 (`models.resnet18(weights=None)`). É crucial usar `weights=None` (sem pesos pré-treinados) porque vamos carregar *nossos próprios pesos* treinados.
     * Ele ajusta a camada final (`model.fc`) para ter 4 saídas (o `num_classes` baseado no `CLASS_NAMES`).
     * Ele então carrega os pesos salvos pelo notebook (o `state_dict`) usando `model.load_state_dict()`.
-    * **IMPORTANTE:** O script está configurado para carregar `banana_classifier_model.pth`. Você deve renomear o arquivo `resnet18_model.pth` (saída do notebook) para este nome.
     * Ele coloca o modelo em **modo de avaliação** (`model.eval()`). Isso é essencial para desativar camadas como Dropout e Batch Normalization, garantindo resultados consistentes na inferência.
 
 * **Passo 2: Pipeline de Inferência (`predict_image`)**
@@ -121,14 +120,75 @@ Para que o projeto funcione, a estrutura de pastas deve ser:<br>
 <img width="293" height="545" alt="image" src="https://github.com/user-attachments/assets/2b55c5e4-50bd-4ead-ac1b-1ca7b4d1f1ab" />
 
 
-### Dependências Principais
 
-Você pode instalar as bibliotecas necessárias com o pip:
+## Como fazer todo o processo de treinamento e geração do executável
 
-```bash
-pip install torch torchvision
-pip install customtkinter
-pip install pillow
-pip install numpy
-pip install scikit-learn  # (Necessário para a matriz de confusão no notebook)
+### Passo 1: Configurar o Ambiente
+
+1.  **Instale o Python**: Baixe e instale o **Python 3.10** ou **3.11** (versões estáveis para este projeto). Marque **"Add Python to PATH"** durante a instalação.
+2.  **Crie a Pasta do Projeto**: Crie uma pasta (ex: `C:\Projetos\analyser`).
+3.  **Abra o Prompt de Comando (CMD)** e navegue até sua pasta:
+    ```bash
+    cd C:\Projetos\analyser
+    ```
+4.  **Crie e Ative um Ambiente Virtual**:
+    ```bash
+    python -m venv venv
+    venv\Scripts\activate
+    ```
+5.  **Instale as Bibliotecas**:
+    ```bash
+    pip install torch torchvision
+    pip install customtkinter
+    pip install pillow
+    pip install numpy
+    pip install scikit-learn
+    ```
+
+### Passo 2: Baixar o Dataset
+
+1.  Na sua pasta (`analyser`), crie uma pasta chamada dataset.
+2.  Baixe o dataset pela Kaggle neste link: https://www.kaggle.com/datasets/luischuquimarca/banana-ripeness?resource=download
+<br>
+3.  Coloque dentro da pasta dataset para que fique nessa estrutura:<br>
+
+<br>
+<img width="120" height="354" alt="image" src="https://github.com/user-attachments/assets/c099b051-6537-48b9-b4ea-8b4f8cd70660" />
+<br>
+
+<br>Ao final, você terá uma pasta `dataset`, deixando assim: dataset/train, dataset/test e dataset/validation.
+
+### Passo 3: Treinar o Modelo
+
+1.  Certifique-se de que os arquivos `train_model.py` e `app.py` disponibilizados neste repositório estão na sua pasta `analyser`.
+2.  Execute o script de treinamento:
+    ```bash
+    python train_model.ipynb
+    ```
+3.  Este script irá demorar alguns minutos. Ao final, você terá dois novos arquivos essenciais na sua pasta:
+    * `banana_classifier_model.pth` (O "cérebro" treinado)
+    * `class_names.txt` (As "etiquetas" que o cérebro aprendeu)
+
+### Passo 4: Gerar o Executável (`.exe`)
+
+1.  Execute o comando do **PyInstaller** no seu terminal (ainda com o `(venv)` ativo):
+
+    ```bash
+    pyinstaller --onefile --add-data "banana_classifier_model.pth;." --add-data "class_names.txt;." app.py
+    ```
+
+3.  O processo pode levar alguns minutos.
+
+### Passo 5: Testar
+
+1.  Após a conclusão, uma nova pasta `dist` será criada.
+2.  Dentro dela, você encontrará o `app.exe`.
+3.  Este é o programa final, só clicar e fazer os uploads das imagens de bananas.
+
+
+# Referências
+
+* Para treinamento do nosso modelo, utilizamos o arquivo cnn_resnet18_pyTorch_tf_flowers_vFim.ipynb, disponibilizado em aula pelo professor Ivan Carlos, alteramos algumas coisas para que se adequasse ao nosso objetivo.
+* Para o encapsulamento do código em um executável, utilizamos a biblioteca pyinstaller e sua documentação, disponível em: https://pyinstaller.org/
+* Para os dados (imagens) utilizadas, recorremos a um dataset pronto disponível no Kaggle com link de acesso: https://www.kaggle.com/datasets/luischuquimarca/banana-ripeness
 
