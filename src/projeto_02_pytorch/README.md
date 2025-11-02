@@ -161,13 +161,18 @@ Para que o projeto funcione, a estrutura de pastas deve ser:<br>
 ### Passo 3: Treinar o Modelo
 
 1.  Certifique-se de que os arquivos `train_model.ipynb` e `app.py` disponibilizados neste repositório estão na sua pasta `analyser`.
-2.  Execute o script de treinamento:
+2.  Execute passo a passo o notebook de treinamento:
     ```bash
-    python train_model.ipynb
+    train_model.ipynb
     ```
-3.  Este script irá demorar alguns minutos. Ao final, você terá dois novos arquivos essenciais na sua pasta:
-    * `banana_classifier_model.pth` (O "cérebro" treinado)
-    * `class_names.txt` (As "etiquetas" que o cérebro aprendeu)
+3.  A execução de alguns passos do treinamento pode demorar alguns minutos. Ao final, você terá o arquivo do modelo treinado .pth:
+    * `banana_classifier_model.pth` (O "cérebro" treinado) <br>
+Crie também um TXT chamado class_names.txt e coloque o nome das classes no formato abaixo:<br>
+
+<img width="122" height="124" alt="image" src="https://github.com/user-attachments/assets/25ffb3b1-fa6c-4948-b55c-8a09fe759a0d" />
+<br>
+
+   * `class_names.txt` (As "etiquetas" que o cérebro aprendeu)
 
 ### Passo 4: Gerar o Executável (`.exe`)
 
