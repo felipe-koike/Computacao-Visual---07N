@@ -193,7 +193,8 @@ Crie também um TXT chamado class_names.txt e coloque o nome das classes no form
 
 # Referências
 
-* Para treinamento do nosso modelo, utilizamos o arquivo cnn_resnet18_pyTorch_tf_flowers_vFim.ipynb, disponibilizado em aula pelo professor Ivan Carlos, alteramos algumas coisas para que se adequasse ao nosso objetivo.
-* Para o encapsulamento do código em um executável, utilizamos a biblioteca pyinstaller e sua documentação, disponível em: https://pyinstaller.org/
-* Para os dados (imagens) utilizadas, recorremos a um dataset pronto disponível no Kaggle com link de acesso: https://www.kaggle.com/datasets/luischuquimarca/banana-ripeness
+CHUQUIMARCA, Luis. Banana ripeness. [S. l.]: Kaggle, 2023. Dataset. Disponível em: https://www.kaggle.com/datasets/luischuquimarca/banana-ripeness. Acesso em: 2 nov. 2025.* Para o encapsulamento do código em um executável, utilizamos a biblioteca pyinstaller e sua documentação, disponível em: https://pyinstaller.org/<br>
 
+PYINSTALLER. [S. l.]: PyInstaller Team, c2022. Disponível em: https://pyinstaller.org/. Acesso em: 2 nov. 2025.<br>
+
+cnn_resnet18_pyTorch_tf_flowers_vFim.ipynb, material de aula fornecido pelo Prof. Ivan Carlos na disciplina Inteligência Artificial, Universidade Presbiteriana Mackenzie.<br>
