@@ -36,8 +36,8 @@ Este projeto é uma aplicação de **Visão Computacional** que utiliza uma **Re
 * **Validação de Arquivo:** Verifica o tamanho do arquivo (limite de 20MB) para evitar sobrecarga.
 * **Modelo de Deep Learning:** Utiliza uma arquitetura ResNet18 treinada especificamente para esta tarefa.
 
-LINK DE VÍDEO TESTE SEM AUDIO
-https://drive.google.com/file/d/18caospEZf7bDh_pC_T_jo-B8VEgjV8I-/view?usp=sharing
+LINK DE VÍDEO 
+https://youtu.be/1-pjtz0aEnw
 
 ## 🧠 Como Funciona: IA e Visão Computacional
 
